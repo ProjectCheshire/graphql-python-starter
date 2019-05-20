@@ -23,6 +23,7 @@ logzero = "*"
 lazy-import = "*"
 graphql-core = "*"
 flask = "*"
+pre-commit = "*"
 
 [pipenv]
 allow_prereleases = true
