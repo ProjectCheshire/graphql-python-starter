@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  db:
+    image: library/postgres:latest
+    restart: unless-stopped
+    volumes:
+      - bospy-db:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=bospy
+      - POSTGRES_PASSWORD=rocks
+
+volumes:
+  bospy-db:
+    driver: local

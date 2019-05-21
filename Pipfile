@@ -1,0 +1,33 @@
+[[source]]
+verify_ssl = true
+name = "pypi"
+url = "https://pypi.python.org/simple"
+
+[dev-packages]
+mypy = "*"
+pytest = "*"
+black = "*"
+
+[requires]
+python_version = "3.7"
+
+[packages]
+graphene = "*"
+flask-graphql = "*"
+gql = "*"
+requests = "*"
+"iso8601" = "*"
+regex = "*"
+python-dateutil = "*"
+logzero = "*"
+lazy-import = "*"
+graphql-core = "*"
+flask = "*"
+pre-commit = "*"
+flask-sqlalchemy = "*"
+flask-script = "*"
+flask-migrate = "*"
+psycopg2-binary = "*"
+
+[pipenv]
+allow_prereleases = true
