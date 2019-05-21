@@ -27,7 +27,7 @@
     sha: master
     hooks:
     - id: black
-      language_version: python3.6
+      language_version: python3.7
       args: [--line-length=79, --skip-string-normalization]
 -   repo: https://github.com/pre-commit/mirrors-mypy
     sha: master
