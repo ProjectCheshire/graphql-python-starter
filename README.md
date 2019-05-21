@@ -28,3 +28,17 @@ $ python manage.py db init
 $ python manage.py db migrate
 $ python manage.py db upgrade
 ```
+## Client Code
+
+Make sure you have Node downloaded
+
+Command-line instructions
+```
+cd client
+#Install all dependencies
+npm i 
+#Create and run js bundle
+npm run start
+```
+
+
