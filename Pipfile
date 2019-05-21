@@ -24,6 +24,10 @@ lazy-import = "*"
 graphql-core = "*"
 flask = "*"
 pre-commit = "*"
+flask-sqlalchemy = "*"
+flask-script = "*"
+flask-migrate = "*"
+psycopg2-binary = "*"
 
 [pipenv]
 allow_prereleases = true

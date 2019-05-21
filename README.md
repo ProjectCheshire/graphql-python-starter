@@ -7,3 +7,18 @@ Welcome! The purpose of this repository is to serve as an introduction to GraphQ
 We are using Flask as a simple web server.
 
 This example does not yet cover subscriptions, which will be covered at a later date.
+
+
+
+## POSTGRES SETUP
+
+# docker compose up will include postgres
+
+# from project directory
+$ export APP_SETTINGS="config.DevelopmentConfig"
+$ export DATABASE_URL="postgresql://localhost/starwars"
+
+$ python manage.py db init
+$ python manage.py db migrate
+$ python manage.py db upgrade
+
