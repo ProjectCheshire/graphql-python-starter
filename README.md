@@ -32,16 +32,25 @@ $ python manage.py db upgrade
 $ python
 >>> from app import *
 >>> db.create_all()
+
 >>> p = Planet(name='Tatooine')
 >>> db.session.add(p)
 >>> db.session.commit()
+
 >>> c1 = Character(name='Luke Skywalker', race='human', planet_id=1)
 >>> c2 = Character(name='Obi-Wan Kenobi', race='human', planet_id=1)
 >>> db.session.add(c1)
 >>> db.session.add(c2)
 >>> db.session.commit()
 
+# test the db relations.
+>>> Character.query.filter_by(name='Luke Skywalker').first().planet
+# <Planet 'Tatooine'>
+>>> Planet.query.filter_by(name='Tatooine').first().characters
+# [<Character 'Luke Skywalker'>, <Character 'Obi-Wan Kenobi'>]
 ```
+
+
 ## Client Code
 
 Make sure you have Node downloaded
