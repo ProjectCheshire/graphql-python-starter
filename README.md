@@ -19,14 +19,28 @@ Command-line instructions
 ```
 # docker compose up will include postgres
 
-# from project directory
-
+# db setup.
 $ export APP_SETTINGS="config.DevelopmentConfig"
 $ export DATABASE_URL="postgresql://localhost/starwars"
 
 $ python manage.py db init
 $ python manage.py db migrate
 $ python manage.py db upgrade
+
+
+# seed the db.
+$ python
+>>> from app import *
+>>> db.create_all()
+>>> p = Planet(name='Tatooine')
+>>> db.session.add(p)
+>>> db.session.commit()
+>>> c1 = Character(name='Luke Skywalker', race='human', planet_id=1)
+>>> c2 = Character(name='Obi-Wan Kenobi', race='human', planet_id=1)
+>>> db.session.add(c1)
+>>> db.session.add(c2)
+>>> db.session.commit()
+
 ```
 ## Client Code
 

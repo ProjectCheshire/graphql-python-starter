@@ -1,25 +1,20 @@
 from app import db
 
-class Book(db.Model):
-    __tablename__ = 'books'
 
+class Planet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
-    author = db.Column(db.String())
-    published = db.Column(db.String())
-
-    def __init__(self, name, author, published):
-        self.name = name
-        self.author = author
-        self.published = published
+    characters = db.relationship('Character', backref='planet', lazy=True)
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
-    
-    def serialize(self):
-        return {
-            'id': self.id, 
-            'name': self.name,
-            'author': self.author,
-            'published':self.published
-        }
+        return '<Planet %r>' % self.name
+
+
+class Character(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    race = db.Column(db.String())
+    planet_id = db.Column(db.Integer, db.ForeignKey('planet.id'), nullable=True)
+
+    def __repr__(self):
+        return '<Character %r>' % self.name
