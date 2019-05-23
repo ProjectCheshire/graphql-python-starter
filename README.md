@@ -13,14 +13,9 @@
 ### Docker-Compose
 
 
-## Command-line Installation instructions
-
+## Backend (Flask SQLA + PSQL)
 
 ```
-====================================================
-###################### BACKEND #####################
-====================================================
-
 """
     This section describes manual bash install from project 
     root directory. Alternatively pull and compose from docker. 
