@@ -41,12 +41,12 @@ f2.memberships.append(h4)
 
 db.session.commit()
 
-factions = Faction.query.all()
 heroes = Hero.query.all()
-
-for f in factions:
-    for h in heroes:
-        print( u'\N{check mark}' + " -- " + f.name + " -- " + h.name + " -- " + h.planets.name )
+for h in heroes:
+    faction_names =[]
+    faction_loop = [faction_names.append(f.name) for f in h.memberships]
+    faction_loop
+    print( u'\N{check mark}' + " -- " + h.name + " -- " + h.planets.name + " -- " + ", ".join(faction_names) )
 
 print("\nDONE.")
 print("\n===================================")
