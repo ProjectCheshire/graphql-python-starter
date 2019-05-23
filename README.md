@@ -21,8 +21,8 @@ FLASK-SQLAlchemy with PostgreSQL
 
     Unless you are customizing this tutorial for your own app, 
     skip this section because `docker compose up` will include 
-    the postgres install, migrate, and seed as part of the dockerfile 
-    commands.
+    the postgres install, migrate, and seed as part of the 
+    dockerfile commands.
 """
 
 HOMEBREW:
