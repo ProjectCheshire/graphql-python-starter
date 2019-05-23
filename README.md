@@ -12,42 +12,78 @@
 
 ### Docker-Compose
 
-## Postgres setup
 
-Command-line instructions
+## Command-line Installation instructions
+
 
 ```
-# docker compose up will include postgres
+====================================================
+###################### BACKEND #####################
+====================================================
 
-# db setup.
-$ export APP_SETTINGS="config.DevelopmentConfig"
-$ export DATABASE_URL="postgresql://localhost/starwars"
+"""
+    This section describes manual bash install from project 
+    root directory. Alternatively pull and compose from docker. 
 
-$ python manage.py db init
-$ python manage.py db migrate
-$ python manage.py db upgrade
+    Unless you are customizing this tutorial for your own app, 
+    skip this section because `docker compose up` will include 
+    the postgres install, migrate, and seed as part of the dockerfile 
+    commands.
+"""
+
+HOMEBREW:
+=====================================================
+$ brew install postgresql
+$ brew install pipenv
 
 
-# seed the db.
-$ python
->>> from app import *
->>> db.create_all()
+APP DEPENDENCIES:
+=====================================================
+# Installs all python packages from pipfile.lock
+$ pipenv install
 
->>> p = Planet(name='Tatooine')
->>> db.session.add(p)
->>> db.session.commit()
 
->>> c1 = Character(name='Luke Skywalker', race='human', planet_id=1)
->>> c2 = Character(name='Obi-Wan Kenobi', race='human', planet_id=1)
->>> db.session.add(c1)
->>> db.session.add(c2)
->>> db.session.commit()
+DATABASE SETUP:
+=============================================
 
-# test the db relations.
->>> Character.query.filter_by(name='Luke Skywalker').first().planet
-# <Planet 'Tatooine'>
->>> Planet.query.filter_by(name='Tatooine').first().characters
-# [<Character 'Luke Skywalker'>, <Character 'Obi-Wan Kenobi'>]
+
+    Flask Settings:
+    ====================
+    $ export APP_SETTINGS="config.DevelopmentConfig"
+    $ export DATABASE_URL="postgresql://localhost/starwars"
+    $ python manage.py db init
+
+    Create PSQL Tables:
+    ====================
+    $ psql
+    CREATE DATABASE starwars;
+
+
+    Generate Flask Migration Files in /migrations/versions:
+    =======================
+    $ python manage.py db migrate
+    $ python manage.py db upgrade
+
+    """
+    Whenever you update the model classes, run:
+    $ python manage.py db migrate
+    $ python manage,py upgrade
+
+
+    If you run into errors, do this before migrating:
+    delete the files inside /migrations/versions,
+    but don't delete the /versions dir itself. And then run:
+        
+    $ psql
+    DROP DATABASE starwars;
+    CREATE DATABASE starwars;
+    """
+
+
+    Seed the Database:
+    ====================
+    $ python seed_db.py
+
 ```
 
 
