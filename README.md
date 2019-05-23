@@ -6,16 +6,14 @@
 - We are using Flask as a simple web server.
 - This example does not yet cover subscriptions, which will be covered at a later date.
 
-## Development environments
-
-### Pipenv
 
 ### Docker-Compose
 
 
-## Backend (Flask SQLA + PSQL)
+## Backend
 
 ```
+# FLASK-SQLAlchemy with PostgreSQL
 """
     This section describes manual bash install from project 
     root directory. Alternatively pull and compose from docker. 
@@ -60,18 +58,18 @@ DATABASE SETUP:
     $ python manage.py db upgrade
 
     """
-    Whenever you update the model classes, run:
-    $ python manage.py db migrate
-    $ python manage,py upgrade
+        Whenever you update the model classes, run:
+        $ python manage.py db migrate
+        $ python manage,py upgrade
 
 
-    If you run into errors, do this before migrating:
-    delete the files inside /migrations/versions,
-    but don't delete the /versions dir itself. And then run:
-        
-    $ psql
-    DROP DATABASE starwars;
-    CREATE DATABASE starwars;
+        If you run into errors, do this before migrating:
+        delete the files inside /migrations/versions,
+        but don't delete the /versions dir itself. And then run:
+            
+        $ psql
+        DROP DATABASE starwars;
+        CREATE DATABASE starwars;
     """
 
 
