@@ -13,7 +13,8 @@
 ## Backend
 
 ```
-# FLASK-SQLAlchemy with PostgreSQL
+FLASK-SQLAlchemy with PostgreSQL
+
 """
     This section describes manual bash install from project 
     root directory. Alternatively pull and compose from docker. 
@@ -39,12 +40,12 @@ $ pipenv install
 DATABASE SETUP:
 =============================================
 
-
     Flask Settings:
     ====================
     $ export APP_SETTINGS="config.DevelopmentConfig"
     $ export DATABASE_URL="postgresql://localhost/starwars"
     $ python manage.py db init
+
 
     Create PSQL Tables:
     ====================
@@ -52,8 +53,9 @@ DATABASE SETUP:
     CREATE DATABASE starwars;
 
 
-    Generate Flask Migration Files in /migrations/versions:
+    Flask Migration:
     =======================
+    # generates files in `/migrations/versions`
     $ python manage.py db migrate
     $ python manage.py db upgrade
 
