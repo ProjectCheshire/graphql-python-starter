@@ -4,24 +4,15 @@ from flask_sqlalchemy import SQLAlchemy
 """
     Relationships
     ===================================================
-    {1} Planet <---has---- {Many} Heroes.
-
-    {Many} Heroes ----have---> {Many} memberships.
-    {Many} memberships ----have---> {Many} Factions.
-
-
-    Notes:
-    ===================================================
-    Heroes, is the plural spelling of Heros.
-        Why plural? Because `hero.membership` 
-        contains many membership objects.
+    {1} Planet <--has-- {Many} Heroes.
+    {Many} Factions <--have-- {Many} memberships <--have-- {Many} Heroes.
 """
 
+# Many-to-Many: https://www.youtube.com/watch?v=OvhoYbjtiKc
 memberships = db.Table('memberships',
     db.Column( 'hero_id', db.Integer, db.ForeignKey('heroes.id') ),
     db.Column( 'faction_id', db.Integer, db.ForeignKey('factions.id') )
 )
-
 
 
 class Planet(db.Model):
