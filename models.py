@@ -25,7 +25,7 @@ class Planet(db.Model):
     heroes = db.relationship("Hero", backref="planets", lazy=True)
 
     def __repr__(self):
-        return "<Planet %r>" % self.name
+        return f"<Planet {self.name}>"
 
 
 class Hero(db.Model):
@@ -45,7 +45,7 @@ class Hero(db.Model):
     )
 
     def __repr__(self):
-        return "<Hero %r>" % self.name
+        return f"<Hero {self.name}>"
 
 
 class Faction(db.Model):
@@ -55,4 +55,4 @@ class Faction(db.Model):
     name = db.Column(db.String())
 
     def __repr__(self):
-        return "<Faction %r>" % self.name
+        return f"<Faction {self.name}>"

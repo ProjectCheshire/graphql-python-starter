@@ -30,7 +30,7 @@ except:
     print("\nError, could not create model objects.\n")
 else:
     for e in new_entities:
-        print(u"\N{check mark}" + " -- %s" % (e.name))
+        print(f"\N{check mark} -- {e.name}")
 
 print("\n\nCreating faction memberships...\n")
 
@@ -47,12 +47,7 @@ for h in heroes:
     faction_loop = [faction_names.append(f.name) for f in h.memberships]
     faction_loop
     print(
-        u"\N{check mark}"
-        + " -- "
-        + h.name
-        + " -- "
-        + h.planets.name
-        + " -- "
+        f"\N{check mark} -- {h.name} -- {h.planets.name} -- "
         + ", ".join(faction_names)
     )
 
