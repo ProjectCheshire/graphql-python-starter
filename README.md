@@ -162,8 +162,8 @@ _Coming soon!_
 
 ## Further details and guidelines for contributing
 
-See the [contributing guidelines](CONTRIBUTING.md) for more detailed instructions.
+See the [contributing guidelines](.github/CONTRIBUTING.md) for more detailed instructions.
 
 ## Code of conduct
 
-Please abide by the guidelines in the [Code of Conduct](CODE_OF_CONDUCT.md).
+Please abide by the guidelines in the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
