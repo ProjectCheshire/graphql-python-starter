@@ -1,6 +1,6 @@
 import React from 'react';
-import { Paper ,withStyles , Typography, Grid, Card } from '@material-ui/core';
-import TestCard from './components/TestCard';
+import { withStyles , Typography, Grid } from '@material-ui/core';
+import HeroSelect from './containers/HeroSelect';
 
 const styles = theme => ({
   root: {
@@ -55,31 +55,7 @@ const App = (props) => {
                   style={{fontSize:'5rem', marginBottom:10}}>
               STAR WARS GRAPHqL
       </Typography>
-      <Grid 
-            className={classes.root}
-            container 
-            justify='center'
-            alignItems="center"> 
-        <Paper  className={classes.paper} elevation={5}>
-          <Grid container 
-            justify='center'
-            alignItems="center">
-            <TestCard name={ 'Chewie' } image={'../../public/Chewy.png'} />
-            <TestCard name={ 'Leia' } image={'../../public/Leia.png'} />
-            <TestCard name={ 'Luke' } image={'../../public/Luke.png'} />
-            {/* <TestCard name={ 'c3po' } image={'../../public/c3po.png'} /> */}
-            <TestCard name={ 'HanSolo' } image={'../../public/HanSolo.png'} />
-            <TestCard name={ 'MillFalcon' } image={'../../public/MillFalcon.png'} />
-
-            <TestCard name={ 'DarthVader' } image={'../../public/DarthVader.png'} />
-            <TestCard name={ 'BobaFett' } image={'../../public/BobaFett.png'} />
-            <TestCard name={ 'StormTrooper' } image={'../../public/StormTrooper.png'} />
-            <TestCard name={ 'R2-D2' } image={'../../public/R2-D2.png'} />
-            <TestCard name={ 'DeathStar' } image={'../../public/DeathStar.png'} />
-
-          </Grid>
-        </Paper>
-      </Grid>
+      <HeroSelect />
     </Grid>
   );
 }

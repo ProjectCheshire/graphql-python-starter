@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Avatar, 
          withStyles, 
-         Typography, 
-         Card } from '@material-ui/core';
+         Button 
+        } from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -23,20 +23,17 @@ const styles = theme => ({
       },
   });
 
-//TODO -> Convert into a functional Component
-//TODO -> Rename to something more viable to the app
-class TestCard extends Component{
-    render(){
-        const { classes, name, image } = this.props;
-        return(
-            <Card 
-                container 
+const CharacterButton = (props)  => {
+  const { classes, name, image } = props;
+    return(
+            <Button 
+                container
+                variant="outlined" 
                 className={classes.card} 
                 root={{opacity:1}}>
             <Avatar alt={name} src={image} className={classes.bigAvatar} />
-          </Card>
-        )
-    }
+          </Button>
+    )
 }
 
-export default withStyles(styles)(TestCard);
+export default withStyles(styles)(CharacterButton);
