@@ -26,8 +26,8 @@ breakpoint
 try:
     create_records
     db.session.commit()
-except:
-    print("\nError, could not create model objects.\n")
+except Exception as e:
+    print(f"An error occurred:\n{e}\nPlease try again.")
 else:
     for e in new_entities:
         print(f"\N{check mark} -- {e.name}")
