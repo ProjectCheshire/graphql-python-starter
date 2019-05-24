@@ -1,25 +1,64 @@
-from app import db
+"""
+GraphQL Python starter
+----------------------
 
-class Book(db.Model):
-    __tablename__ = 'books'
+PostgreSQL database models
+
+Relationships
+===================================================
+{1} Planet <--has-- {Many} Heroes.
+{Many} Factions <--have-- {Many} memberships <--have-- {Many} Heroes.
+
+Many-to-Many: https://www.youtube.com/watch?v=OvhoYbjtiKc
+"""
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+memberships = db.Table(
+    "memberships",
+    db.Column("hero_id", db.Integer, db.ForeignKey("heroes.id")),
+    db.Column("faction_id", db.Integer, db.ForeignKey("factions.id")),
+)
+
+
+class Planet(db.Model):
+    __tablename__ = "planets"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
-    author = db.Column(db.String())
-    published = db.Column(db.String())
 
-    def __init__(self, name, author, published):
-        self.name = name
-        self.author = author
-        self.published = published
+    heroes = db.relationship("Hero", backref="planets", lazy=True)
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
-    
-    def serialize(self):
-        return {
-            'id': self.id, 
-            'name': self.name,
-            'author': self.author,
-            'published':self.published
-        }
+        return f"<Planet {self.name}>"
+
+
+class Hero(db.Model):
+    __tablename__ = "heroes"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    race = db.Column(db.String())
+
+    planet_id = db.Column(
+        db.Integer, db.ForeignKey("planets.id"), nullable=True
+    )
+    memberships = db.relationship(
+        "Faction",
+        secondary=memberships,
+        backref=db.backref("memberships", lazy="dynamic"),
+    )
+
+    def __repr__(self):
+        return f"<Hero {self.name}>"
+
+
+class Faction(db.Model):
+    __tablename__ = "factions"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+
+    def __repr__(self):
+        return f"<Faction {self.name}>"
