@@ -3,3 +3,9 @@ body {
     padding: 0;
     font-family: sans-serif;
   }
+  @font-face{
+    font-family: 'Star Wars';
+    font-style: normal;
+    font-weight: 400;
+    src:url(./font/Starjedi.ttf) format('truetype')
+  }

@@ -18,10 +18,11 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline-loader'
+        loader: 'ttf-loader',
+
       },
       {
-        test: /\.(png|jpg|jpeg|gif|ico)$/,
+        test: /\.(png|jpg|jpeg|gif|ico|ttf)$/,
         exclude: /node_modules/,
         use: [
            {
