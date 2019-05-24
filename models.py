@@ -1,14 +1,20 @@
-from app import db
+"""
+GraphQL Python starter
+----------------------
+
+PostgreSQL database models
+
+Relationships
+===================================================
+{1} Planet <--has-- {Many} Heroes.
+{Many} Factions <--have-- {Many} memberships <--have-- {Many} Heroes.
+
+Many-to-Many: https://www.youtube.com/watch?v=OvhoYbjtiKc
+"""
 from flask_sqlalchemy import SQLAlchemy
 
-"""
-    Relationships
-    ===================================================
-    {1} Planet <--has-- {Many} Heroes.
-    {Many} Factions <--have-- {Many} memberships <--have-- {Many} Heroes.
-"""
+db = SQLAlchemy()
 
-# Many-to-Many: https://www.youtube.com/watch?v=OvhoYbjtiKc
 memberships = db.Table(
     "memberships",
     db.Column("hero_id", db.Integer, db.ForeignKey("heroes.id")),
