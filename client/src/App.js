@@ -1,61 +1,39 @@
 import React from 'react';
 import { withStyles , Typography, Grid } from '@material-ui/core';
+import { Route, Switch } from 'react-router-dom'
+import AppLogo from './components/AppLogo';
 import HeroSelect from './containers/HeroSelect';
+import HeroPage from './containers/HeroPage';
 
 const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    maxHeight:'35vh',
-    maxWidth:'50vw',
+  backdrop: {
+    minHeight:'100vh',
+    minWidth: '100vw',
+    backgroundImage:`url(../public/stars.jpg)`,
+    backgroundRepeat:'no-repeat', 
+    backgroundSize:'cover',
+    margin:'0'
 
-    minWidth: '90vw',
-    opacity:.9
-
-  },
-  card:{
-    minWidth: '30vw',
-    maxWidth: '60vw',
-    maxHeight:'30vh',
-    padding:10,
-    opacity:1,
-    margin:50,
-    backgroundColor:'black'
-  },
-  typeFont:{
-    color:'yellow',
-  },
-  paper:{
-    maxHeight:'35vh',
-    minWidth:'50vw',
-
-    maxWidth:'50vw',
   }
 });
 
 
 const App = (props) => {
   const { classes } = props
+
   return (
     <Grid
         container
-        // spacing={0}
+        className={classes.backdrop}
         alignItems="center"
         justify="center"
         direction="column"
-        style={{ minHeight: '100vh', 
-                 backgroundImage:`url(../public/stars.jpg)`, 
-                 backgroundRepeat:'no-repeat', 
-                 backgroundSize:'cover',
-                 margin:'0'
-              }}>
-      <Typography className={classes.typeFont} 
-                  component="h3"
-                  style={{fontSize:'5rem', marginBottom:10}}>
-              STAR WARS GRAPHqL
-      </Typography>
-      <HeroSelect />
+    >
+      <AppLogo />
+      <Switch>
+            <Route exact path="/hero/:name" component={HeroPage} />
+            <Route exact path="/" component={HeroSelect} />
+        </Switch>
     </Grid>
   );
 }

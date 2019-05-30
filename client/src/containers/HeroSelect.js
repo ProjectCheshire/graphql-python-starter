@@ -38,10 +38,20 @@ class HeroSelect extends Component {
         ]
     }
 
+    selectCharacter = (event, name) => {
+        event.preventDefault();
+        console.log(event,name)
+        this.props.history.push(`/hero/${name}`)
+    }
+
     getHeroes = () => {
         const heroes = this.state.heroes.map(hero => {
             console.log('[Hero]',hero)
-            return  <CharacterButton name={ `${hero}` } image={`../../public/${hero}.png`} />
+            return  <CharacterButton 
+                                     key={hero}
+                                     name={ `${hero}` } 
+                                     image={`../../public/${hero}.png`} 
+                                     select = {this.selectCharacter}/>
         })
 
         return heroes;
@@ -51,7 +61,6 @@ class HeroSelect extends Component {
     render() {
 
         const { classes } = this.props;
-
         return (
             <Grid 
             className={classes.parentGrid}
