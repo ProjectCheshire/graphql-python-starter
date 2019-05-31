@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Paper ,withStyles , Grid } from '@material-ui/core';
 import CharacterButton from '../components/CharacterButton';
-
+import AppLogo from '../components/AppLogo';
 
 const styles = theme => ({
     parentGrid: {
@@ -62,19 +62,23 @@ class HeroSelect extends Component {
 
         const { classes } = this.props;
         return (
+        <Fragment>
+            <AppLogo />
             <Grid 
-            className={classes.parentGrid}
-            container 
-            justify='center'
-            alignItems="center"> 
+                className={classes.parentGrid}
+                container 
+                justify='center'
+                alignItems="center"> 
                 <Paper  className={classes.paper} elevation={5}>
-                <Grid container 
-                    justify='center'
-                    alignItems="center">
-                    {this.getHeroes()}
-                </Grid>
+                    <Grid container 
+                        justify='center'
+                        alignItems="center">
+                        {this.getHeroes()}
+                    </Grid>
                 </Paper>
-        </Grid>
+            </Grid>
+        </Fragment>
+  
         )
     }
 }

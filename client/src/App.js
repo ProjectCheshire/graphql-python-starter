@@ -29,7 +29,6 @@ const App = (props) => {
         justify="center"
         direction="column"
     >
-      <AppLogo />
       <Switch>
             <Route exact path="/hero/:name" component={HeroPage} />
             <Route exact path="/" component={HeroSelect} />
