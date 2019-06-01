@@ -1,5 +1,4 @@
 from flask import Flask
-from sqlalchemy.ext.associationproxy import association_proxy
 from models import db, Faction, Hero, Planet
 
 print("===================================")
