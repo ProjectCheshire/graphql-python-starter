@@ -5,8 +5,7 @@ GraphQL-Python Starter
 app.py: Flask routing module
 """
 import os
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 
 app = Flask(__name__)
 app.config.from_object(os.environ["APP_SETTINGS"])
