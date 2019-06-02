@@ -12,8 +12,9 @@ Relationships
 Many-to-Many: https://www.youtube.com/watch?v=OvhoYbjtiKc
 """
 from flask_sqlalchemy import SQLAlchemy
+from typing import Any
 
-db = SQLAlchemy()
+db = SQLAlchemy()  # type: Any
 
 memberships = db.Table(
     "memberships",
