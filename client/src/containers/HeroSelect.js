@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Paper ,withStyles , Grid } from '@material-ui/core';
 import CharacterButton from '../components/CharacterButton';
-
+import AppLogo from '../components/AppLogo';
 
 const styles = theme => ({
     parentGrid: {
@@ -38,10 +38,20 @@ class HeroSelect extends Component {
         ]
     }
 
+    selectCharacter = (event, name) => {
+        event.preventDefault();
+        console.log(event,name)
+        this.props.history.push(`/hero/${name}`)
+    }
+
     getHeroes = () => {
         const heroes = this.state.heroes.map(hero => {
             console.log('[Hero]',hero)
-            return  <CharacterButton name={ `${hero}` } image={`../../public/${hero}.png`} />
+            return  <CharacterButton 
+                                     key={hero}
+                                     name={ `${hero}` } 
+                                     image={`../../public/${hero}.png`} 
+                                     select = {this.selectCharacter}/>
         })
 
         return heroes;
@@ -51,21 +61,24 @@ class HeroSelect extends Component {
     render() {
 
         const { classes } = this.props;
-
         return (
+        <Fragment>
+            <AppLogo />
             <Grid 
-            className={classes.parentGrid}
-            container 
-            justify='center'
-            alignItems="center"> 
+                className={classes.parentGrid}
+                container 
+                justify='center'
+                alignItems="center"> 
                 <Paper  className={classes.paper} elevation={5}>
-                <Grid container 
-                    justify='center'
-                    alignItems="center">
-                    {this.getHeroes()}
-                </Grid>
+                    <Grid container 
+                        justify='center'
+                        alignItems="center">
+                        {this.getHeroes()}
+                    </Grid>
                 </Paper>
-        </Grid>
+            </Grid>
+        </Fragment>
+  
         )
     }
 }

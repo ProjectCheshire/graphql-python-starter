@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, 
          withStyles, 
-         Button 
+         Button
         } from '@material-ui/core';
 
 
@@ -24,15 +24,16 @@ const styles = theme => ({
   });
 
 const CharacterButton = (props)  => {
-  const { classes, name, image } = props;
+  const { classes, name, image, select } = props;
+   console.log('[SELECT]', select)
     return(
             <Button 
-                container
-                variant="outlined" 
-                className={classes.card} 
-                root={{opacity:1}}>
+                // variant="outlined" 
+                className={classes.card}
+                onClick={(event) => select(event, name)}
+                >
             <Avatar alt={name} src={image} className={classes.bigAvatar} />
-          </Button>
+           </Button>
     )
 }
 
