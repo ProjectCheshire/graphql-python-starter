@@ -70,7 +70,7 @@ If you run into errors, try:
 - Re-creating the database:
 
   ```sh
-  graphql-python-starter-hash ❯ psql
+  graphql-python-starter-hash ❯ psql postgres
   ```
 
   ```
