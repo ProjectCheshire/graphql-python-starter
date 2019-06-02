@@ -56,50 +56,18 @@ graphql-python-starter-hash ❯ pre-commit install
 
 #### Set up database
 
-These steps are based on a [tutorial](https://medium.com/@dushan14/create-a-web-application-with-python-flask-postgresql-and-deploy-on-heroku-243d548335cc).
-
-##### Specify Flask environment variables
-
-```sh
-graphql-python-starter-hash ❯ export APP_SETTINGS="config.DevelopmentConfig"
-graphql-python-starter-hash ❯ export DATABASE_URL="postgresql://localhost/starwars"
-```
-
-##### Initialize database
-
 ```sh
 graphql-python-starter-hash ❯ python manage.py db init
-```
-
-If you receive `Error: Directory migrations already exists`, delete the `migrations/` directory and re-run `python manage.py db init`.
-
-##### Create PSQL tables
-
-```sh
-graphql-python-starter-hash ❯ psql
-```
-
-```
-# psql (version)
-# Type "help" for help.
-user=$ CREATE DATABASE starwars;
-CREATE DATABASE
-user=$ \q
-```
-
-##### Migrate database
-
-```sh
-graphql-python-starter-hash ❯ python manage.py db migrate
 graphql-python-starter-hash ❯ python manage.py db upgrade
+graphql-python-starter-hash ❯ python manage.py db migrate
+graphql-python-starter-hash ❯ python seed_db.py
 ```
 
-These commands generate files in `/migrations/versions`. Run these commands whenever you update the model classes.
+If you run into errors, try:
 
-If you run into errors, do this before migrating:
-
+- Deleting the migrations directory: If you receive `Error: Directory migrations already exists`, delete the `migrations/` directory and re-run `python manage.py db init`.
 - Delete the files inside `/migrations/versions`, but don't delete the `/versions` directory itself.
-- Then run:
+- Re-creating the database:
 
   ```sh
   graphql-python-starter-hash ❯ psql
@@ -114,12 +82,6 @@ If you run into errors, do this before migrating:
   CREATE DATABASE
   user=$ \q
   ```
-
-##### Seed the database with starter data
-
-```sh
-graphql-python-starter-hash ❯ python seed_db.py
-```
 
 ##### Verify database creation
 

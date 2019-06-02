@@ -1,3 +1,9 @@
+"""
+GraphQL Python starter
+----------------------
+Database population script
+"""
+import os
 from flask import Flask
 from models import db, Faction, Hero, Planet
 
@@ -6,7 +12,15 @@ print("\nStarting migration script...")
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost/starwars"
+if os.environ.get("SQLALCHEMY_DATABASE_URI"):
+    db_uri = os.environ.get("SQLALCHEMY_DATABASE_URI")
+elif os.environ.get("DATABASE_URL"):
+    db_uri = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+else:
+    db_uri = "postgresql://localhost/starwars"
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+
 db.init_app(app)
 app.app_context().push()
 db.drop_all()
@@ -31,11 +45,9 @@ create_records = [(db.session.add(i)) for i in new_entities]
 try:
     create_records
     db.session.commit()
+    print(f"\N{check mark} -- Database records successfully created")
 except Exception as e:
     print(f"An error occurred:\n{e}\nPlease try again.")
-else:
-    for i in new_entities:
-        print(f"\N{check mark} -- {i.name}")
 
 print("\n\nCreating faction memberships...\n")
 

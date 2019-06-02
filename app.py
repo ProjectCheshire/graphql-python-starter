@@ -8,9 +8,16 @@ import os
 from flask import Flask
 
 app = Flask(__name__)
-app.config.from_object(os.environ["APP_SETTINGS"])
+app.config["APP_SETTINGS"] = "config.DevelopmentConfig"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost/starwars"
+if os.environ.get("SQLALCHEMY_DATABASE_URI"):
+    db_uri = os.environ.get("SQLALCHEMY_DATABASE_URI")
+elif os.environ.get("DATABASE_URL"):
+    db_uri = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+else:
+    db_uri = "postgresql://localhost/starwars"
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
 
 
 @app.route("/", methods=["GET"])

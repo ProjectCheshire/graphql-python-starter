@@ -12,9 +12,14 @@ Relationships
 Many-to-Many: https://www.youtube.com/watch?v=OvhoYbjtiKc
 """
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy_utils import database_exists, create_database
 from typing import Any
 
 db = SQLAlchemy()  # type: Any
+engine = create_engine("postgresql://localhost/starwars")
+if not database_exists(engine.url):
+    create_database(engine.url)
 
 memberships = db.Table(
     "memberships",

@@ -29,6 +29,7 @@ flask-sqlalchemy = "*"
 flask-script = "*"
 flask-migrate = "*"
 psycopg2-binary = "*"
+sqlalchemy-utils = "*"
 
 [pipenv]
 allow_prereleases = true
