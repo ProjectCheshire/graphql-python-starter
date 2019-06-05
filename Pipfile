@@ -30,6 +30,8 @@ flask-script = "*"
 flask-migrate = "*"
 psycopg2-binary = "*"
 sqlalchemy-utils = "*"
+flask_cors = "*"
+graphene_sqlalchemy = '*'
 
 [pipenv]
 allow_prereleases = true
