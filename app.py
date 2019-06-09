@@ -24,12 +24,10 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
 
 
-app.add_url_rule('/graphql',
-    view_func=GraphQLView.as_view(
-        'graphql',
-        schema=schema,
-        graphiql=True
-    ))
+app.add_url_rule(
+    "/graphql",
+    view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True),
+)
 
 
 CORS(app)
