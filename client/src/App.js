@@ -1,10 +1,9 @@
 import React from 'react';
 import { withStyles , Typography, Grid } from '@material-ui/core';
 import { Route, Switch } from 'react-router-dom'
-import AppLogo from './components/AppLogo';
-import HeroSelect from './containers/HeroSelect';
+import MenuSelect from './containers/MenuSelect';
 import HeroPage from './containers/HeroPage';
-
+import { mainMenuIcons, heroMenuIcons } from './constants'
 const styles = theme => ({
   backdrop: {
     minHeight:'100vh',
@@ -30,8 +29,9 @@ const App = (props) => {
         direction="column"
     >
       <Switch>
-            <Route exact path="/hero/:name" component={HeroPage} />
-            <Route exact path="/" component={HeroSelect} />
+            <Route exact path="/hero/:name" render={ (props) => <HeroPage {...props}/>}/>
+            <Route exact path="/hero/" render={ (props) => <MenuSelect {...props}  icons={heroMenuIcons} menuSelectName={'hero'}/>} />
+            <Route exact path="/" render={ (props) => <MenuSelect {...props}  icons={mainMenuIcons} menuSelectName={'sillyTest'}/>}/>
         </Switch>
     </Grid>
   );
