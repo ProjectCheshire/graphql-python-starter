@@ -22,7 +22,6 @@ if not database_exists(engine.url):
     create_database(engine.url)
 
 
-
 memberships = db.Table(
     "memberships",
     db.Column("hero_id", db.Integer, db.ForeignKey("heroes.id")),
