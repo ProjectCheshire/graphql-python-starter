@@ -39,8 +39,10 @@ h1 = Hero(name="Luke Skywalker", race="human", planet_id=1)
 h2 = Hero(name="Obi-Wan Kenobi", race="human", planet_id=1)
 h3 = Hero(name="Sheev Palpatine", race="human", planet_id=2)
 h4 = Hero(name="Darth Bane", race="human", planet_id=3)
+h5 = Hero(name="Anakin Skywalker", race="human", planet_id=1)
 
-new_entities = (f1, f2, p1, p2, p3, h1, h2, h3, h4)
+
+new_entities = (f1, f2, p1, p2, p3, h1, h2, h3, h4, h5)
 create_records = [(db.session.add(i)) for i in new_entities]
 try:
     create_records
@@ -53,8 +55,10 @@ print("\n\nCreating faction memberships...\n")
 
 f1.memberships.append(h1)
 f1.memberships.append(h2)
+f1.memberships.append(h5)
 f2.memberships.append(h3)
 f2.memberships.append(h4)
+f2.memberships.append(h5)
 
 db.session.commit()
 
