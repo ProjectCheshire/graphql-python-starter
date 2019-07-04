@@ -1,39 +1,54 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { withStyles , Typography, Grid } from '@material-ui/core';
 import { Route, Switch } from 'react-router-dom'
 import MenuSelect from './containers/MenuSelect';
 import HeroPage from './containers/HeroPage';
-import { mainMenuIcons, heroMenuIcons } from './constants'
+import DescriptionPage from './containers/DescriptionPage';
+import { mainMenuIcons, heroMenuIcons, factionIcons } from './constants'
 const styles = theme => ({
   backdrop: {
-    minHeight:'100vh',
     minWidth: '100vw',
-    backgroundImage:`url(../public/stars.jpg)`,
-    backgroundRepeat:'no-repeat', 
-    backgroundSize:'cover',
+    height:'100vh',
+    maxHeight:'100vh',
+    backgroundColor:'black',
+    // backgroundImage:`url(../public/stars.jpg)`,
+    // backgroundRepeat:'no-repeat', 
+    // backgroundSize:'cover',
     margin:'0'
 
   }
 });
 
 
+/**
+ * The app is a glorified container for the 
+ * routes in our process, the icons drive a 
+ * large part of our process, which is from a dedicated consants files for these
+ * meta objects
+ * @param {*} props 
+ */
 const App = (props) => {
-  const { classes } = props
 
+  const [value, setValue] = useState('')
+
+  const { classes } = props;
+  const providerArgs = {value,setValue}
   return (
-    <Grid
-        container
-        className={classes.backdrop}
-        alignItems="center"
-        justify="center"
-        direction="column"
-    >
-      <Switch>
-            <Route exact path="/hero/:name" render={ (props) => <HeroPage {...props}/>}/>
-            <Route exact path="/hero/" render={ (props) => <MenuSelect {...props}  icons={heroMenuIcons} menuSelectName={'hero'}/>} />
-            <Route exact path="/" render={ (props) => <MenuSelect {...props}  icons={mainMenuIcons} menuSelectName={'sillyTest'}/>}/>
-        </Switch>
-    </Grid>
+      <Grid
+          container
+          className={classes.backdrop}
+          alignItems="center"
+          justify="center"
+          direction="column"
+      >
+          <Switch>
+              <Route exact path="/hero/:name" render={ (props) => <HeroPage {...props}/>}/>
+              <Route exact path="/hero/" render={ (props) => <MenuSelect {...props}  icons={heroMenuIcons}/>} />
+              <Route exact path="/faction/:name" render={ (props) => <DescriptionPage {...props} />} />
+              <Route exact path="/faction/" render={ (props) => <MenuSelect {...props}  icons={factionIcons}/>} />
+              <Route exact path="/" render={ (props) => <MenuSelect {...props}  icons={mainMenuIcons}/>}/>
+          </Switch>
+      </Grid>
   );
 }
 
