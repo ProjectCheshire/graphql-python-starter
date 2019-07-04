@@ -3,15 +3,16 @@ import { Avatar,
          withStyles, 
          Button
         } from '@material-ui/core';
-
+import { yellow } from '@material-ui/core/colors';
+import {Consumer as IdConsumer} from '../IdContext';
 
 const styles = theme => ({
     card:{
-      maxWidth: '5vw',
+      maxWidth: 'auto',
       padding:10,
       opacity:1,
       margin:30,
-      backgroundColor:'black'
+      backgroundColor:'black',
     },
     typeFont:{
       color:'yellow'
@@ -23,10 +24,10 @@ const styles = theme => ({
       },
   });
 
-const CharacterButton = (props)  => {
+const IconButton = (props)  => {
   const { classes, name, image, select } = props;
-   console.log('[SELECT]', select)
     return(
+
             <Button 
                 // variant="outlined" 
                 className={classes.card}
@@ -37,4 +38,4 @@ const CharacterButton = (props)  => {
     )
 }
 
-export default withStyles(styles)(CharacterButton);
+export default withStyles(styles)(IconButton);

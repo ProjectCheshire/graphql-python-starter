@@ -39,7 +39,7 @@ class RightGrid extends Component{
         const { classes } = this.props;
 
         return(
-            <Grid 
+        <Grid 
             container
             justify='center'
             alignContent='center'
