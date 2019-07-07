@@ -47,7 +47,9 @@ class LeftDescriptionGrid extends Component{
     render() {
 
         const {classes, name } = this.props;
+        console.log(`[LEFT DESCRIPTION GRID PROPS] :: ${JSON.stringify(this.props)}`)
 
+        console.log(`[LEFT DESCRIPTION GRID] :: ${JSON.stringify(name)}`)
         return(
           <Grid 
             container
@@ -64,7 +66,7 @@ class LeftDescriptionGrid extends Component{
                                      select = {() => {}}
                                      /> */}
                   <Typography>
-                      {`This is the ${name}`}
+                      {`This is the SPARTA`}
                   </Typography>
                 </Grid>
 

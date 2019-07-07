@@ -2,26 +2,43 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import LeftDescriptionGrid from '../components/LeftDescriptionGrid'
+import { Query } from "react-apollo";
+import { GET_FACTION } from "../queries"
 
-const  DescriptionPage = ({globalIcon}) => {
+const  DescriptionPage = ({globalIconName}) => {
+    console.log(`[Description Page] ${globalIconName}`);
+    return(
+        
+         globalIconName ?         
+         <Query query={GET_FACTION} variables={{name:globalIconName}}>
+         {({loading, error, data}) => {
+             if (loading) return null;
+             if(error) return `Error! ${error}`
+             console.log(`DATA :: ${JSON.stringify(data.factionName)}`)
+             return (
+                 <Grid container 
+                 direction='row'
+                 justify='center'
+                 alignContent='center'
+                 >
+                     <LeftDescriptionGrid  name={data.factionName}/>
+                 </Grid>
+             )           
+         }}
+     </Query> : <div> Yo icon var is undefined</div>
+            
+        
 
-    return (
-        <Grid container 
-                direction='row'
-                justify='center'
-                alignContent='center'
-                >
-            <LeftDescriptionGrid  name={globalIcon.name}/>
-            <LeftDescriptionGrid />
-        </Grid>
     )
-    
+
+
 }
+
 
 
 const mapStateToProps = (state) => {
     return (
-        {globalIcon:state.icon}
+        {globalIconName:state.icon.name}
     ) 
 }  
 
