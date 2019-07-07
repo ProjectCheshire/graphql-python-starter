@@ -4,7 +4,6 @@ import { Avatar,
          Button
         } from '@material-ui/core';
 import { yellow } from '@material-ui/core/colors';
-import {Consumer as IdConsumer} from '../IdContext';
 
 const styles = theme => ({
     card:{
