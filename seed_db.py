@@ -30,6 +30,8 @@ print("\nCreating model entities with foreign keys...\n")
 
 f1 = Faction(name="Light Side")
 f2 = Faction(name="Dark Side")
+f3 = Faction(name="rebel")
+
 
 p1 = Planet(name="Tatooine")
 p2 = Planet(name="Naboo")
@@ -42,7 +44,7 @@ h4 = Hero(name="Darth Bane", race="human", planet_id=3)
 h5 = Hero(name="Anakin Skywalker", race="human", planet_id=1)
 
 
-new_entities = (f1, f2, p1, p2, p3, h1, h2, h3, h4, h5)
+new_entities = (f1, f2, f3, p1, p2, p3, h1, h2, h3, h4, h5)
 create_records = [(db.session.add(i)) for i in new_entities]
 try:
     create_records
@@ -59,6 +61,8 @@ f1.memberships.append(h5)
 f2.memberships.append(h3)
 f2.memberships.append(h4)
 f2.memberships.append(h5)
+f3.memberships.append(h1)
+
 
 db.session.commit()
 
