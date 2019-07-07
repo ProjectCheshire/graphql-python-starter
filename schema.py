@@ -9,7 +9,6 @@ from models import Planet as PlanetModel
 class Hero(SQLAlchemyObjectType):
     class Meta:
         model = HeroModel
-        # only_fields = ("name", "race")
         interfaces = (relay.Node,)
 
 
@@ -33,6 +32,7 @@ class Query(graphene.ObjectType):
     factions = graphene.List(Faction)
     hero = graphene.Field(Hero, id=graphene.String())
     hero_name = graphene.Field(heroes, name=graphene.String())
+    faction_name = graphene.Field(factions, name=graphene.String())
     find_race = graphene.Field(Hero, race=graphene.String() )
 
 
@@ -52,11 +52,9 @@ class Query(graphene.ObjectType):
         query = Hero.get_query(info)
         return query.filter_by(name=name)
 
+    def resolve_faction_name(self, info, name):
+        query = Faction.get_query(info)
+        return query.filter_by(name=name)
 
-    # all_heroes = SQLAlchemyConnectionField( Hero )
-    # all_factions = SQLAlchemyConnectionField(Faction)
-    # all_planets = SQLAlchemyConnectionField( Planet )
+
 schema = graphene.Schema(query=Query)
-
-
-# schema = graphene.Schema(query=Query, types=[Hero, Faction, Planet])
