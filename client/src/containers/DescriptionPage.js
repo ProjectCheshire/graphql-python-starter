@@ -1,26 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import LeftDescriptionGrid from '../components/LeftDescriptionGrid'
-import { factionIcons, heroMenuIcons} from '../constants';
 
-export default class DescriptionPage extends Component {
+const  DescriptionPage = ({globalIcon}) => {
 
-
-    render() {
-
-        const { name } = this.props;
-
-
-
-        return (
-            <Grid container 
-                  direction='row'
-                  justify='center'
-                  alignContent='center'
-                  >
-                <LeftDescriptionGrid />
-                <LeftDescriptionGrid />
-            </Grid>
-        )
-    }
+    return (
+        <Grid container 
+                direction='row'
+                justify='center'
+                alignContent='center'
+                >
+            <LeftDescriptionGrid  name={globalIcon.name}/>
+            <LeftDescriptionGrid />
+        </Grid>
+    )
+    
 }
+
+
+const mapStateToProps = (state) => {
+    return (
+        {globalIcon:state.icon}
+    ) 
+}  
+
+export default connect(mapStateToProps)(DescriptionPage);

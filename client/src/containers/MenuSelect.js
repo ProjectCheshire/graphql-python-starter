@@ -1,16 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
+import { connect } from 'react-redux';
 import { Paper ,withStyles , Grid } from '@material-ui/core';
 import Star from '@material-ui/icons/Star';
 import IconButton from '../components/IconButton';
 import AppLogo from '../components/AppLogo';
-
-
-/**
- * By making a more generic "description" vs "menu"
- * with only two cases, does this abstract too much!
- * because of the boolean nature of description vs menu
- * we have to create a new prop "Menu Select Name"
- */
+import {setIcon } from '../actions';
 
 
 const styles = theme => ({
@@ -18,23 +12,18 @@ const styles = theme => ({
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
       paddingBottom: theme.spacing.unit * 2,
-    //   height:'60%',
       width:'auto',
       minWidth:'50vw',
-    //   minWidth: '90vw',
       opacity:.9
     },
     paper:{
-    //   height:'100%',
       width:'50%'
-    //   minWidth:'50vw',
-  
-    //   maxWidth:'50vw',
     }
   });
 
 const MenuSelect = (props) => {
 
+  const {icons, setIcon, history, classes} = props
     /**
     * this will take the props which will determine
     * which buttons will be display snf if the type is provided
@@ -42,16 +31,14 @@ const MenuSelect = (props) => {
     */
     const getIconsButtons = () => {
 
-        const {icons ,menuSelectName } = props
-
         const iconButtons = icons.map(icon => {
             const name = icon.type === 'menu' ? icon.name : icon.id
             return  <IconButton 
-                                     key={name}
-                                     name={ `${name}` } 
-                                     image={`../../public/${icon.id}.png`} 
-                                     select = {() => selectIconButton(name, menuSelectName, icon.type)}
-                                     />
+                        key={name}
+                        name={ `${name}` } 
+                        image={`../../public/${icon.id}.png`} 
+                        select = {() => selectIconButton(name, icon.type, icon)}
+                    />
         })
     
         return iconButtons;
@@ -64,27 +51,22 @@ const MenuSelect = (props) => {
      * @param {string} menuSelectName 
      * @param {string} type 
      */
-    const selectIconButton = (name, menuSelectName, type) => {
-        console.log(`name ${name}`)
-        console.log(`type ${type}`)
-
+    const selectIconButton = (name, type, icon) => {
+        setIcon(icon)
         switch (type) {
           case 'menu':
-            props.history.push(`/${name}/`) 
+            history.push(`/${name}/`) 
             break;
           case 'faction':
-            props.history.push(`/faction/${name}`)
+            history.push(`/faction/${name}`)
             break;
           case 'hero':
-            props.history.push(`/hero/${name}`)
+            history.push(`/hero/${name}`)
             break;             
           default:
             break;
         }
-        
     }
-
-    const { classes } = props;
 
     return (
         <Fragment>
@@ -109,6 +91,12 @@ const MenuSelect = (props) => {
 
 }
 
+const mapStateToProps = (state) =>  ({stateIcon: state.icon})
 
 
-export default withStyles(styles)(MenuSelect);
+
+const mapDispatchToProps = (dispatch) => ({setIcon: (icon) => dispatch(setIcon(icon))})
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(MenuSelect));
