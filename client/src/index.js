@@ -36,7 +36,7 @@ const theme = createMuiTheme({
   });
 
 const httpLink = createHttpLink({
-  uri: 'http://127.0.0.1:5000/'
+  uri: 'http://127.0.0.1:5000/graphql'
 })
 
 setTimeout(console.log(`HTPPLINK ${JSON.stringify(httpLink)}`), 4000 )
