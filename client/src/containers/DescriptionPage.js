@@ -14,14 +14,16 @@ const  DescriptionPage = ({globalIconName}) => {
          {({loading, error, data}) => {
              if (loading) return null;
              if(error) return `Error! ${error}`
-             console.log(`DATA :: ${JSON.stringify(data.factionName)}`)
+             console.log(`DATA :: ${JSON.stringify(data.factionName[0])}`)
              return (
                  <Grid container 
-                 direction='row'
-                 justify='center'
-                 alignContent='center'
+                    direction='row'
+                    justify='space-around'
+                    alignContent='center'
                  >
-                     <LeftDescriptionGrid  name={data.factionName}/>
+                     <LeftDescriptionGrid  name={globalIconName} description={data.factionName[0].description}/>
+                     <LeftDescriptionGrid  name={globalIconName} description={data.factionName[0].description}/>
+
                  </Grid>
              )           
          }}

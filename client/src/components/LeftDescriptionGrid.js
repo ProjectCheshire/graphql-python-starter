@@ -3,53 +3,45 @@ import React, {Component} from 'react';
 import {Grid, 
     Paper, 
     withStyles, 
-    Typography,
-    Button } from '@material-ui/core';
+    Typography 
+  } from '@material-ui/core';
 import IconButton from '../components/IconButton'
 
-    const styles = theme => {
-        return({
-              leftGrid:{
-                ...theme.mixins.gutters(),
-                paddingTop: theme.spacing.unit * 2,
-                paddingBottom: theme.spacing.unit * 2,
-                margin:theme.spacing.unit * 2,
-                border: 'yellow solid 1px ',
-                // backgroundColor:'blue',
-                maxWidth: '35vw',
-              },
-              innerGrid:{
-                  height:'10vh'
-              },
-              topInnerGrid:{
-                backgroundColor:'yellow',
-                height:'50%'
-              },
-              bottomInnerGrid:{
-                backgroundColor:'red',
-                height:'30%'
-              },
-              paper:{
-                minWidth:'33vw',
-                height:'100%',
-              },
-              button: {
-                margin: theme.spacing.unit,
-                maxWidth: '10vw',
-                alignSelf:'center'
-              },
-        })
-    }
+const styles = theme => {
+    return({
+          leftGrid:{
+            ...theme.mixins.gutters(),
+            paddingTop: theme.spacing.unit * 2,
+            paddingBottom: theme.spacing.unit * 2,
+            border: 'yellow solid 1px ',
+            width: '25%',
+          },
+          button: {
+            margin: theme.spacing.unit,
+            maxWidth: '10vw',
+            alignSelf:'center'
+          },
+          typographyGrid:{
+            // marginRight: theme.spacing.unit * 2,
+            
+          },
+          descriptionGrid:{
+            // marginRight: theme.spacing.unit * 2,
+            padding:theme.spacing.unit * 2
+          }
+
+    })
+}
 
 
 class LeftDescriptionGrid extends Component{
 
     render() {
 
-        const {classes, name } = this.props;
+        const {classes, name, description } = this.props;
         console.log(`[LEFT DESCRIPTION GRID PROPS] :: ${JSON.stringify(this.props)}`)
 
-        console.log(`[LEFT DESCRIPTION GRID] :: ${JSON.stringify(name)}`)
+        // console.log(`[LEFT DESCRIPTION GRID] :: ${JSON.stringify(name)}`)
         return(
           <Grid 
             container
@@ -57,19 +49,40 @@ class LeftDescriptionGrid extends Component{
             alignContent='center'
             direction='column'
             className={classes.leftGrid}>
-              <Paper className={classes.paper}>
-                <Grid>
-                {/* <IconButton 
-                                     key={name}
-                                     name={ `${name}` } 
-                                     image={`../../public/${icon.id}.png`} 
-                                     select = {() => {}}
-                                     /> */}
-                  <Typography>
-                      {`This is the SPARTA`}
-                  </Typography>
-                </Grid>
+              <Paper >
+                <Grid 
+                  container
+                  alignContent="center"
+                  justify="center">
+                  <IconButton 
+                    key={name}
+                    disabled
+                    name={ `${name}` } 
+                    image={`../../public/${name}.png`} 
+                    select = {() => {}}
+                  />
+                  <Grid 
+                    container 
+                    alignContent="center"
+                    className={classes.typographyGrid} 
+                    style={{width:'unset'}}>
+                    <Typography component="div">
+                        {/* <Box textAlign="center" fontWeight="fontWeightBold"> */}
+                          {`${name}`}
+                        {/* </Box> */}
+                      </Typography>
+                  </Grid>
 
+                </Grid>
+                <Grid 
+                    container 
+                    alignContent="center"
+                    className={classes.descriptionGrid} 
+                >
+                    <Typography component="div">
+                          {`${description}`.replace('\n','')}
+                      </Typography>
+                  </Grid>
               </Paper>
         </Grid>
         )
