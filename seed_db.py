@@ -30,7 +30,12 @@ print("\nCreating model entities with foreign keys...\n")
 
 f1 = Faction(name="Light Side")
 f2 = Faction(name="Dark Side")
-f3 = Faction(name="rebel")
+f3 = Faction(name="rebel", description=""" 
+Officialy known as the Alliance to Restore the Republic, 
+the alliance comprimises of several anti-Imperial groups from sector, 
+planetery, and inssurectionist groups. They're nicknamed as "Rebels" and "Rebel Scum" 
+from the Jmperials.
+""")
 
 
 p1 = Planet(name="Tatooine")

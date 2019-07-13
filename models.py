@@ -47,6 +47,7 @@ class Hero(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     race = db.Column(db.String())
+    nick_name = db.Column(db.String())
 
     planet_id = db.Column(
         db.Integer, db.ForeignKey("planets.id"), nullable=True
@@ -66,6 +67,7 @@ class Faction(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
+    description = db.Column(db.String())
 
     def __repr__(self):
         return f"<Faction {self.name}>"
