@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
-import { Paper ,withStyles , Grid } from '@material-ui/core';
+import { Paper ,withStyles , Grid, Typography } from '@material-ui/core';
 import Star from '@material-ui/icons/Star';
 import IconButton from '../components/IconButton';
 import AppLogo from '../components/AppLogo';
@@ -17,13 +17,23 @@ const styles = theme => ({
       opacity:.9
     },
     paper:{
+      [theme.breakpoints.down('sm')]:{
+        width:'100%'
+      },
       width:'50%'
+    },
+    helperText: {
+      [theme.breakpoints.down('sm')]:{
+        width:'100%'
+      },
+      width:'50vw',
+      marginBottom:theme.spacing.unit * 2
     }
   });
 
 const MenuSelect = (props) => {
 
-  const {icons, setIcon, history, classes} = props
+  const {icons, setIcon, history, classes, menuHelperText} = props
     /**
     * this will take the props which will determine
     * which buttons will be display snf if the type is provided
@@ -33,12 +43,21 @@ const MenuSelect = (props) => {
 
         const iconButtons = icons.map(icon => {
             const name = icon.type === 'menu' ? icon.name : icon.id
-            return  <IconButton 
-                        key={name}
-                        name={ `${name}` } 
-                        image={`../../public/${icon.id}.png`} 
-                        select = {() => selectIconButton(name, icon.type, icon)}
-                    />
+            return  (
+              <Grid item direction="column" alignItems="center">
+                <Typography  align="center">
+                  {icon.name}
+                </Typography>
+                <IconButton 
+                    key={name}
+                    name={ `${name}` } 
+                    image={`../../public/${icon.id}.png`} 
+                    select = {() => selectIconButton(name, icon.type, icon)}
+                />
+              </Grid>
+            )
+
+
         })
     
         return iconButtons;
@@ -70,13 +89,14 @@ const MenuSelect = (props) => {
 
     return (
         <Fragment>
-            <Star color="primary"/>
-            <AppLogo />
             <Grid 
                 className={classes.parentGrid}
                 container 
                 justify='center'
                 alignItems="center"> 
+                <Typography color="primary" variant="h4" className={classes.helperText} align="center">
+                  {menuHelperText}
+                </Typography>
                 <Paper  className={classes.paper} elevation={5}>
                     <Grid container 
                         justify='center'
