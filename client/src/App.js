@@ -12,8 +12,8 @@ import { mainMenuIcons, heroMenuIcons, factionIcons } from './constants';
 const styles = theme => createStyles({
   backdrop: {
     minWidth: '100vw',
-    height:'100vh',
-    maxHeight:'100vh',
+    minHeight:'100vh',
+    // maxHeight:'100vh',
     backgroundColor:'black',
     // backgroundImage:`url(../public/stars.jpg)`,
     // backgroundRepeat:'no-repeat', 
@@ -46,11 +46,34 @@ const App = (props) => {
       >
         <Provider store={store}>
           <Switch>
-                <Route exact path="/hero/:name" render={ (props) => <HeroPage {...props}/>}/>
-                <Route exact path="/hero/" render={ (props) => <MenuSelect {...props}  icons={heroMenuIcons}/>} />
-                <Route exact path="/faction/:name" render={ (props) => <DescriptionPage {...props} />} />
-                <Route exact path="/faction/" render={ (props) => <MenuSelect {...props}  icons={factionIcons}/>} />
-                <Route exact path="/" render={ (props) => <MenuSelect {...props}  icons={mainMenuIcons}/>}/>
+                <Route exact 
+                       path="/hero/:name" 
+                       render={ (props) => <HeroPage {...props}/>}
+                />
+                <Route exact 
+                       path="/hero/" 
+                       render={ (props) => <MenuSelect {...props}  
+                                            icons={heroMenuIcons}
+                                            menuHelperText={"Please select a Hero you would like to know more about"}/>}
+                      
+                />
+                <Route exact 
+                       path="/faction/:name" 
+                       render={ (props) => <DescriptionPage {...props} />} 
+                />
+                <Route exact 
+                       path="/faction/" 
+                       render={ (props) => <MenuSelect {...props}  
+                                            icons={factionIcons}
+                                            menuHelperText={"Please select a Faction you would like to know more about"}/>}
+
+                />
+                <Route exact 
+                       path="/" 
+                       render={ (props) => <MenuSelect {...props}  
+                                            icons={mainMenuIcons}
+                                            menuHelperText={"Please select an icon to explore the Star Wars™ universe!"}/>}
+                />
             </Switch>
         </Provider>
 
