@@ -10,7 +10,7 @@ const styles = theme => ({
       maxWidth: 'auto',
       padding:10,
       opacity:1,
-      margin:30,
+      margin:15,
       backgroundColor:'black',
     },
     typeFont:{
@@ -24,12 +24,13 @@ const styles = theme => ({
   });
 
 const IconButton = (props)  => {
-  const { classes, name, image, select } = props;
+  const { classes, name, image, select,disabled } = props;
     return(
 
             <Button 
                 // variant="outlined" 
                 className={classes.card}
+                disabled={disabled ? true : false}
                 onClick={(event) => select(event, name)}
                 >
             <Avatar alt={name} src={image} className={classes.bigAvatar} />
