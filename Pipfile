@@ -6,32 +6,28 @@ url = "https://pypi.python.org/simple"
 [dev-packages]
 mypy = "*"
 pytest = "*"
-black = "*"
+black = "==19.3b0"
 flake8 = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.7"
 
 [packages]
-graphene = "*"
+graphene = "==2.1.8"
+graphql-core = "==2.2"
 flask-graphql = "*"
-gql = "*"
 requests = "*"
-"iso8601" = "*"
+aniso8601 = "==3.0.2"
 regex = "*"
 python-dateutil = "*"
 logzero = "*"
 lazy-import = "*"
-graphql-core = "*"
 flask = "*"
-pre-commit = "*"
 flask-sqlalchemy = "*"
 flask-script = "*"
 flask-migrate = "*"
 psycopg2-binary = "*"
 sqlalchemy-utils = "*"
 flask_cors = "*"
-graphene_sqlalchemy = '*'
-
-[pipenv]
-allow_prereleases = true
+graphene_sqlalchemy = "*"
