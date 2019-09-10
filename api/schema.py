@@ -1,9 +1,9 @@
 import graphene
 from graphene import relay
-from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType
-from models import Hero as HeroModel
-from models import Faction as FactionModel
-from models import Planet as PlanetModel
+from graphene_sqlalchemy import SQLAlchemyObjectType
+from api.models import Hero as HeroModel
+from api.models import Faction as FactionModel
+from api.models import Planet as PlanetModel
 
 
 class Hero(SQLAlchemyObjectType):

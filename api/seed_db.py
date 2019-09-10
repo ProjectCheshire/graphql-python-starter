@@ -5,7 +5,7 @@ Database population script
 """
 import os
 from flask import Flask
-from models import db, Faction, Hero, Planet
+from api.models import db, Faction, Hero, Planet
 
 print("===================================")
 print("\nStarting migration script...")

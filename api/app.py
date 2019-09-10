@@ -8,8 +8,8 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from flask_graphql import GraphQLView
-from models import db
-from schema import schema
+from api.models import db
+from api.schema import schema
 
 app = Flask(__name__)
 app.config["APP_SETTINGS"] = "config.DevelopmentConfig"
